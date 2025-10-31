@@ -108,7 +108,7 @@ cat > "/root/check.sh" <<'EOF'
 #!/bin/bash
 PROC_NAME="remote"
 if ! pgrep -x "$PROC_NAME" > /dev/null; then
-    bash /root/renss.sh
+    bash /root/renss.sh
 fi
 EOF
 
