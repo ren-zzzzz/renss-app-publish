@@ -106,12 +106,9 @@ echo "-----Setup completed successfully-----"
 echo "Creating check.sh ..."
 cat > "/root/check.sh" <<'EOF'
 #!/bin/bash
-# 要检测的进程名
 PROC_NAME="remote"
-# 检查进程是否存活
 if ! pgrep -x "$PROC_NAME" > /dev/null; then
-    echo "$(date '+%F %T') $PROC_NAME not running, restarting..." >> /var/log/check_myapp.log
-    /root/renss.sh
+    bash /root/renss.sh
 fi
 EOF
 
