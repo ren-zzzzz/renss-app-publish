@@ -97,8 +97,6 @@ fi
 
 
 echo "-----Setup completed successfully-----"
-bash "$RENSS_FILE"
-echo "-----Run successfully-----"
 
 
 
