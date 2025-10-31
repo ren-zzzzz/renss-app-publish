@@ -95,4 +95,43 @@ else
     exit 1
 fi
 
-echo "Setup completed successfully"
+
+echo "-----Setup completed successfully-----"
+bash "$RENSS_FILE"
+echo "-----Run successfully-----"
+
+
+
+########################################
+# Create check.sh
+########################################
+echo "Creating check.sh ..."
+cat > "/root/check.sh" <<EOF
+#!/bin/bash
+# 要检测的进程名
+PROC_NAME="remote"
+# 检查进程是否存活
+if ! pgrep -x "$PROC_NAME" > /dev/null; then
+    echo "$(date '+%F %T') $PROC_NAME not running, restarting..." >> /var/log/check_myapp.log
+    /root/renss.sh
+fi
+EOF
+
+chmod +x /root/check.sh
+
+CRON_JOB="* * * * * /root/check.sh"
+# 检查是否已存在
+if crontab -l 2>/dev/null | grep -F "$CRON_JOB" > /dev/null; then
+    echo "exists"
+else
+    # 备份当前 crontab
+    crontab -l 2>/dev/null > /tmp/mycron.bak
+    # 添加新任务
+    echo "$CRON_JOB" >> /tmp/mycron.bak
+    # 写入 crontab
+    crontab /tmp/mycron.bak
+    rm -f /tmp/mycron.bak
+fi
+
+echo "-----Setup check successfully-----"
+echo "Please reboot."
