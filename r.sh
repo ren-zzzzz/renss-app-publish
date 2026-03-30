@@ -32,7 +32,7 @@ echo "Creating $RENSS_FILE ..."
 #cat > "$RENSS_FILE" <<'EOF'
 cat > "$RENSS_FILE" <<EOF
 #!/bin/bash
-screen -dmS renss /root/remote -a $TCP_ADDR -ws $WEBSOCKET_ADDR -p $PASSWORD
+screen -dmS renss /root/remote -a $TCP_ADDR -w $WEBSOCKET_ADDR -p $PASSWORD
 EOF
 
 chmod +x "$RENSS_FILE"
