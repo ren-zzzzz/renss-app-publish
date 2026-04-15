@@ -9,10 +9,10 @@ set -e
 arch=$(uname -m)
 if [[ "$arch" == "aarch64" ]]; then
     echo "ARM (aarch64)"
-    wget -N https://github.com/ren-zzzzz/renss-app-publish/releases/download/v2.2/remote-linux-arm64.zip && unzip remote-linux-arm64 && chmod +x remote
+    wget -N https://github.com/ren-zzzzz/renss-app-publish/releases/download/v2.2-beta/remote-linux-arm64.zip && unzip remote-linux-arm64 && chmod +x remote
 elif [[ "$arch" == "x86_64" ]]; then
     echo "x86_64"
-    wget -N https://github.com/ren-zzzzz/renss-app-publish/releases/download/v2.2/remote-linux-x64.zip && unzip remote-linux-x64 && chmod +x remote
+    wget -N https://github.com/ren-zzzzz/renss-app-publish/releases/download/v2.2-beta/remote-linux-x64.zip && unzip remote-linux-x64 && chmod +x remote
 else
     echo "not support architectures: $arch"
 fi
