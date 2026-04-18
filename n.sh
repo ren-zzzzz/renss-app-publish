@@ -97,7 +97,7 @@ if [[ "$LIBC_TYPE" == "musl" ]]; then
         echo "Musl build currently only supports x64"
         exit 1
     fi
-    FILE="remote-musl-linux-x64.zip"
+    FILE="remote-linux-musl-x64.zip"
 else
     FILE="remote-linux-${ARCH_TYPE}.zip"
 fi
