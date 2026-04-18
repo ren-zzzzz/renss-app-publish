@@ -79,9 +79,8 @@ fi
 
 echo "Detected libc: $LIBC_TYPE"
 
-if [[ "$LIBC_TYPE" != "glibc" ]]; then
-    echo "This program only supports glibc systems"
-    echo "Detected: $LIBC_TYPE"
+if [[ "$LIBC_TYPE" != "glibc" && "$LIBC_TYPE" != "musl" ]]; then
+    echo "Unsupported libc: $LIBC_TYPE"
     exit 1
 fi
 
@@ -91,7 +90,19 @@ fi
 ########################################
 echo "Downloading remote binary..."
 
-wget -O remote.zip "https://github.com/ren-zzzzz/renss-app-publish/releases/download/v2.2-beta/remote-linux-${ARCH_TYPE}.zip"
+BASE_URL="https://github.com/ren-zzzzz/renss-app-publish/releases/download/v2.2-beta"
+
+if [[ "$LIBC_TYPE" == "musl" ]]; then
+    if [[ "$ARCH_TYPE" != "x64" ]]; then
+        echo "Musl build currently only supports x64"
+        exit 1
+    fi
+    FILE="remote-musl-linux-x64.zip"
+else
+    FILE="remote-linux-${ARCH_TYPE}.zip"
+fi
+
+wget -O remote.zip "${BASE_URL}/${FILE}"
 
 unzip -o remote.zip
 rm -f remote.zip
