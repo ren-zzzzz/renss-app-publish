@@ -4,7 +4,7 @@ set -e
 
 TCP_ADDR=":::33300"
 #WEBSOCKET_ADDR=":::10200"
-PASSWORD="my-password"
+PASSWORD="mypassword"
 
 ########################################
 # Download
