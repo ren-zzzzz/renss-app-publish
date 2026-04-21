@@ -2,7 +2,7 @@
 
 set -e
 
-TCP_ADDR=":::10100"
+TCP_ADDR=":::33300"
 #WEBSOCKET_ADDR=":::10200"
 PASSWORD="my-password"
 
